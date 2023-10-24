@@ -8,5 +8,12 @@ namespace Lab4.Controllers
         {
             return View();
         }
+
+        public IActionResult Error()
+        {
+            return View(); // Do you need to modify this line? Use your judgement based on the app you developed so far
+        }
+
+
     }
 }

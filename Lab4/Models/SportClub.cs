@@ -9,16 +9,18 @@ namespace Lab4.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Registration Number")]
         [Required]
-        public string ID { get; set; }
+        public string Id { get; set; }
 
 
-        [StringLength(50, MinimumLength = 1)]
+        [StringLength(50, MinimumLength = 3)]
         [Required]
         public string Title { get; set; }
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
         public decimal Fee { get; set; }
+
+        public List<Subscription> Subscriptions { get; set; } = new();
 
     }
 }
