@@ -1,0 +1,26 @@
+﻿@model Lab4.Models.ViewModels.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+<p>
+
+    <div> @{
+            if (Model?.ErrorMessage != null)
+            {
+               <div>
+               Error Message: @Model.ErrorMessage
+               </div>
+            }  else
+            {
+                <div>
+                    Error Message: Unexpected Error Occurred
+               </div>
+            }
+            }
+            </div>
+    <a asp-controller="Home" asp-action="Index">Home</a> 
+</p>

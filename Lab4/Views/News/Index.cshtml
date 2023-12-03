@@ -1,44 +1,51 @@
-﻿@model IEnumerable<Lab4.Models.News>
+﻿ @model Lab4.Models.ViewModels.NewsViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>News for @Model.SportClub?.Title</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-id="@Model.SportClub.Id">Upload News</a>
+</p>
+<p>
+    <a asp-controller="SportClubs" asp-action="Index">Back to List</a> 
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FileName)
+                 File Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Url)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SportClub)
+                  Image
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+
+        @if (Model.News.Count() ==0)
+        {
+              <tr>
+                  <td>
+                   <h2> No news exist for this Sport Club yet </h2>
+                  </td>
+                  </tr>
+        }
+        @foreach (var item in Model.News) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Url)
+                    <img src=@item.Url alt="Image" width="500px"  />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SportClub.Id)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NewsId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NewsId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.NewsId">Delete</a>
             </td>
         </tr>
