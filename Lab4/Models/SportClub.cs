@@ -22,5 +22,6 @@ namespace Lab4.Models
 
         public List<Subscription> Subscriptions { get; set; } = new();
 
+        public List<News> News { get; set; }
     }
 }
