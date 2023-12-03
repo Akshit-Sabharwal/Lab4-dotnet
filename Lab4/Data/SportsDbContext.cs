@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Lab4.Models;
+using System.Reflection.Metadata;
 
 namespace Lab4.Data
 {
@@ -16,10 +17,17 @@ namespace Lab4.Data
 
        public DbSet<Subscription> Subscriptions { get; set; }
 
+       public DbSet<News> News { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Fan>().ToTable("Fan");
-            modelBuilder.Entity<SportClub>().ToTable("Sport Club");
+            modelBuilder.Entity<SportClub>()
+         .HasMany(s => s.News)
+         .WithOne(s => s.SportClub)
+         .HasForeignKey(s => s.SportsClubId)
+         .IsRequired();
+
             modelBuilder.Entity<Subscription>().HasKey(s => new { s.FanId, s.SportClubId });
         }
     }
