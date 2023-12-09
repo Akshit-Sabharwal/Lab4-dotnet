@@ -1,6 +1,6 @@
 ﻿namespace Lab4.Models.ViewModels
 {
-    public class SportClubViewModel
+    public class FanSportClubViewModel
     {
         public IEnumerable<Fan> Fans { get; set; }
         public IEnumerable<SportClub> SportClubs { get; set; }

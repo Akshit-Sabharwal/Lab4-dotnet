@@ -23,7 +23,7 @@ namespace Lab4.Controllers
         // GET: SportClubs
         public async Task<IActionResult> Index(string ID)
         {
-            var viewModel = new SportClubViewModel { SportClubs = await _context.SportClubs.ToListAsync() };
+            var viewModel = new FanSportClubViewModel { SportClubs = await _context.SportClubs.ToListAsync() };
 
             if (ID != null)
             {
@@ -34,7 +34,7 @@ namespace Lab4.Controllers
                 var fans = await _context.Fans.ToListAsync();
                 var subscribedFans = (from f in fans where fanID.Contains(f.ID) select f).ToList();
                 
-                viewModel.Fans = subscribedFans;
+                viewModel.Fans = subscribedFans.OrderBy(f=>f.FullName);
                     }
             return View(viewModel);
         }

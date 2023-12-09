@@ -1,0 +1,58 @@
+﻿@model Lab4.Models.ViewModels.FanSubscriptionViewModel
+
+@{
+}
+<main role="main" class="pb-3">
+
+
+    <h1>Edit</h1>
+
+    <div>
+        <h4>Fan</h4>
+        <hr>
+        <dl class="row">
+            <dt class="col-sm-2">
+                Full Name
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Fan.FullName
+            </dd>
+        </dl>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <table>
+                <tbody>
+                    @foreach(var item in Model.Subscriptions)
+                    {
+                        <tr>
+                            <td>
+                                @item.Title
+                            </td>
+                            <td>
+                                @if (item.IsMember)
+                                {
+                                    <a asp-action="Unsubscribe" asp-route-id1="@Model.Fan.ID" asp-route-id2="@item.SportClubId">Unsubscribe</a>
+
+                                } 
+                                else
+                                {
+                                    <a asp-action="Subscribe" asp-route-id1="@Model.Fan.ID" asp-route-id2="@item.SportClubId">Subscribe</a>
+                                }
+                            </td>
+                        </tr>
+
+                    }
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <a href="/Fans">Back to List</a>
+    </div>
+
+
+</main>
