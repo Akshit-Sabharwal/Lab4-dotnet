@@ -24,10 +24,16 @@
             @Html.DisplayFor(model => model.Fee)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    @if(Model?.News.Count !=0)
+    {
+        <h4>You cannot delete a SportClub untill all associated news are deleted</h4>
+    } else
+    {
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+           
+        </form>
+    }
+    <a asp-action="Index">Back to List</a>
 </div>

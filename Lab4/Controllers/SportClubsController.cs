@@ -145,6 +145,8 @@ namespace Lab4.Controllers
                 return NotFound();
             }
 
+            sportClub.News = await _context.News.Where(n=> n.SportsClubId == sportClub.Id).ToListAsync();
+
             return View(sportClub);
         }
 
